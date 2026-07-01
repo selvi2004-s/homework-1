@@ -4,27 +4,41 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+def validate_numbers(*args):
+    """Raise an error if any input is not a number."""
+    for value in args:
+        if not isinstance(value, (int, float)):
+            raise TypeError(f"Invalid input: {value} is not a number")
+
+
 def add(a, b):
+    validate_numbers(a, b)
     logger.info("Adding %s + %s", a, b)
     return a + b
 
 
 def subtract(a, b):
+    validate_numbers(a, b)
     logger.info("Subtracting %s - %s", a, b)
     return a - b
 
 
 def multiply(a, b):
+    validate_numbers(a, b)
     logger.info("Multiplying %s * %s", a, b)
     return a * b
 
 
 def divide(a, b):
+    validate_numbers(a, b)
+    if b == 0:
+        raise ValueError("Cannot divide by zero")
     logger.info("Dividing %s / %s", a, b)
     return a / b
 
 
 def square_root(a):
+    validate_numbers(a, b)
     logger.info("Square root of %s", a)
     return a**0.5
 
