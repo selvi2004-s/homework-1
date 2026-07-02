@@ -5,6 +5,7 @@ logger = logging.getLogger(__name__)
 
 history = []
 
+
 def validate_numbers(*args):
     """Raise an error if any input is not a number."""
     for value in args:
@@ -48,17 +49,36 @@ def divide(a, b):
 
 def square_root(a):
     validate_numbers(a)
-    if a<0: 
+    if a < 0:
         raise ValueError("Cannot take square root of a negative number")
     logger.info("Square root of %s", a)
-    result = a ** 0.5
+    result = a**0.5
     history.append(f"square_root({a}) = {result}")
     return a**0.5
 
 
+def power(base, exponent):
+    validate_numbers(base, exponent)
+    logger.info("Power %s ^ %s", base, exponent)
+    result = base**exponent
+    history.append(f"power({base}, {exponent}) = {result}")
+    return result
+
+
+def average(*numbers):
+    validate_numbers(*numbers)
+    if len(numbers) == 0:
+        raise ValueError("Cannot take average of no numbers")
+    logger.info("Average of %s", numbers)
+    result = sum(numbers) / len(numbers)
+    history.append(f"average{numbers} = {result}")
+    return result
+
+
 def get_history():
-      """Return the list of all calculations performed."""
-      return history
+    """Return the list of all calculations performed."""
+    return history
+
 
 if __name__ == "__main__":
     print("add:", add(4, 2))
