@@ -38,7 +38,9 @@ def divide(a, b):
 
 
 def square_root(a):
-    validate_numbers(a, b)
+    validate_numbers(a)
+    if a<0: 
+        raise ValueError("Cannot take square root of a negative number")
     logger.info("Square root of %s", a)
     return a**0.5
 
@@ -48,4 +50,4 @@ if __name__ == "__main__":
     print("subtract:", subtract(4, 2))
     print("multiply:", multiply(4, 2))
     print("divide:", divide(4, 2))
-    print("sqrt:", square_root(4))
+    print("sqrt:", square_root(-4))
