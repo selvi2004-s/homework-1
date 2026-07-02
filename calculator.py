@@ -3,6 +3,7 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+history = []
 
 def validate_numbers(*args):
     """Raise an error if any input is not a number."""
@@ -14,18 +15,24 @@ def validate_numbers(*args):
 def add(a, b):
     validate_numbers(a, b)
     logger.info("Adding %s + %s", a, b)
+    result = a + b
+    history.append(f"add({a}, {b}) = {result}")
     return a + b
 
 
 def subtract(a, b):
     validate_numbers(a, b)
     logger.info("Subtracting %s - %s", a, b)
+    result = a - b
+    history.append(f"subtract({a}, {b}) = {result}")
     return a - b
 
 
 def multiply(a, b):
     validate_numbers(a, b)
     logger.info("Multiplying %s * %s", a, b)
+    result = a * b
+    history.append(f"multiply({a}, {b}) = {result}")
     return a * b
 
 
@@ -34,6 +41,8 @@ def divide(a, b):
     if b == 0:
         raise ValueError("Cannot divide by zero")
     logger.info("Dividing %s / %s", a, b)
+    result = a / b
+    history.append(f"divide({a}, {b}) = {result}")
     return a / b
 
 
@@ -42,8 +51,14 @@ def square_root(a):
     if a<0: 
         raise ValueError("Cannot take square root of a negative number")
     logger.info("Square root of %s", a)
+    result = a ** 0.5
+    history.append(f"square_root({a}) = {result}")
     return a**0.5
 
+
+def get_history():
+      """Return the list of all calculations performed."""
+      return history
 
 if __name__ == "__main__":
     print("add:", add(4, 2))
@@ -51,3 +66,4 @@ if __name__ == "__main__":
     print("multiply:", multiply(4, 2))
     print("divide:", divide(4, 2))
     print("sqrt:", square_root(-4))
+    print("history:", get_history())
