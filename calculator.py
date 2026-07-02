@@ -85,5 +85,5 @@ if __name__ == "__main__":
     print("subtract:", subtract(4, 2))
     print("multiply:", multiply(4, 2))
     print("divide:", divide(4, 2))
-    print("sqrt:", square_root(-4))
+    print("sqrt:", square_root(4))
     print("history:", get_history())
